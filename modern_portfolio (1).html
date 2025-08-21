@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Mouanga | Chef de Projet Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #007ced;
+            --secondary: #666;
+            --text-dark: #333;
+            --light: #f8f9fa;
+            --white: #fff;
+            --border: #e1e5e9;
+            --shadow: 0 4px 20px rgba(0,124,237,0.08);
+            --shadow-hover: 0 8px 40px rgba(0,124,237,0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-image {
+            aspect-ratio: 9/16;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: var(--light);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #0066cc;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0,124,237,0.1);
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: #ddd;
+            margin: 1rem auto;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .section-divider:hover {
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,124,237,0.3);
+            width: 120px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* À propos */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Partners Slider */
+        .partners-section {
+            margin-top: 4rem;
+        }
+
+        .partners-title {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .partners-slider {
+            overflow: hidden;
+            position: relative;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .partners-track {
+            display: flex;
+            animation: slidePartners 20s linear infinite;
+            align-items: center;
+        }
+
+        .partner-item {
+            min-width: 200px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            margin: 0 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-logo {
+            max-width: 120px;
+            max-height: 50px;
+            object-fit: contain;
+            filter: grayscale(100%) opacity(0.7);
+            transition: all 0.3s ease;
+        }
+
+        .partner-item:hover .partner-logo {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        .partner-item:hover {
+            background: var(--white);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .call-to-action {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        @keyframes slidePartners {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .partners-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Services/Compétences */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-description {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Projets */
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project:last-child {
+            border-bottom: none;
+        }
+
+        .project:nth-child(even) {
+            direction: rtl;
+        }
+
+        .project:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .project-image {
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            background: var(--light);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        /* Suppression des styles spécifiques aux projets avec gradients */
+
+        .project-content {
+            max-width: 500px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .project-description {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            border: 1px solid var(--border);
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .contact .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .contact .btn-primary:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), #0099ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-description {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,124,237,0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .social-icon img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .social-icon:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 6rem 1rem 4rem;
+                min-height: 80vh;
+                gap: 2rem;
+            }
+
+            .hero-image {
+                order: -1;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .about-grid,
+            .project {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project:nth-child(even) {
+                direction: ltr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .contact {
+                padding: 3rem 1rem;
+                margin: 2rem 0;
+            }
+
+            .contact h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Image overlay pour plus d'impact visuel - Supprimé car non nécessaire avec vraies images */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Prince Mouanga</div>
+            <ul class="nav-menu">
+                <li><a href="#accueil" class="active">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Disponible pour de nouveaux projets</div>
+            <h1>Chef de Projet Digital & Stratège Numérique</h1>
+            <p class="hero-description">
+                Je transforme vos idées en solutions digitales performantes. 
+                Spécialisé dans la gestion de projets complexes et l'accompagnement 
+                à la transformation numérique des entreprises.
+            </p>
+            <div class="hero-actions">
+                <a href="https://calendly.com/princemouanga82/30min?month=2025-08" class="btn btn-primary"> Réserver un call</a>
+                <a href="img/Final CV-M.MOUANGA  Prince.pptx.png" class="btn btn-outline" onclick="downloadCV()"> Télécharger mon CV</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="img/KPOP.png" alt="Prince Mouanga - Chef de Projet Digital">
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="section">
+        <div class="section-header">
+            <h2 class="section-title fade-in">À propos</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle fade-in">
+                Passionné par l'innovation digitale, j'accompagne les entreprises dans leur croissance numérique.
+            </p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <p>
+                    J'ai eu l'opportunité d'accompagner des entreprises de toutes tailles 
+                    dans leur transformation numérique.
+                </p>
+                <p>
+                    Mon approche se base sur une méthodologie rigoureuse, une communication 
+                    transparente et une vision stratégique long terme. Je coordonne les équipes 
+                    techniques et créatives pour garantir la réussite de vos projets.
+                </p>
+                <p>
+                    Spécialisé en gestion de projet Agile, transformation digitale et 
+                    optimisation des processus, je m'assure que chaque projet répond 
+                    parfaitement à vos objectifs business.
+                </p>
+            </div>
+        </div>
+
+        <!-- Partners Slider -->
+        <div class="partners-section fade-in">
+            <h3 class="partners-title">Ils m'ont fait confiance</h3>
+            <div class="partners-slider">
+                <div class="partners-track">
+                    <div class="partner-item">
+                        <img src="img/Design sans titre.jpg" alt="Mairie 2ᵉ Arrondissement Port-Gentil" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/Logo Olo.jpg" alt="Olo Hub Municipal" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/Pogimmo (2).png" alt="Pogimmo" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/thé.jpg" alt="Thé Guinzo" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/CNMAG.png" alt="CNMAG" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/Ashley logo .jpg" alt="Ashley" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/rabanel logo.jpg" alt="Rabanel Auto" class="partner-logo">
+                    </div>
+                    <!-- Duplication pour effet de défilement continu -->
+                    <div class="partner-item">
+                        <img src="img/Design sans titre.jpg" alt="Mairie 2ᵉ Arrondissement Port-Gentil" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/Logo Olo.jpg" alt="Olo Hub Municipal" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/Pogimmo (2).png" alt="Pogimmo" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/thé.jpg" alt="Thé Guinzo" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/CNMAG.png" alt="CNMAG" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/Ashley logo .jpg" alt="Ashley" class="partner-logo">
+                    </div>
+                    <div class="partner-item">
+                        <img src="img/rabanel logo.jpg" alt="Rabanel Auto" class="partner-logo">
+                    </div>
+                </div>
+            </div>
+            <p class="call-to-action">Il ne manque que vous !</p>
+        </div>
+
+        <div class="stats fade-in">
+            <div class="stat">
+                <span class="stat-number"> 5+ </span>
+                <div class="stat-label">Projets réalisés</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number"> 2+ </span>
+                <div class="stat-label">Année d'expérience</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number"> 85% </span>
+                <div class="stat-label">Satisfaction client</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+        <div class="section-header">
+            <h2 class="section-title fade-in">Services</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle fade-in">
+                Des solutions complètes pour accélérer votre transformation digitale.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <h3 class="service-title">Gestion de Projet Digital</h3>
+                <p class="service-description">
+                    Pilotage complet de vos projets digitaux avec méthodologies Agile. 
+                    De la conception à la mise en production, je garantis le respect 
+                    des délais et du budget.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <h3 class="service-title">Stratégie Numérique</h3>
+                <p class="service-description">
+                    Définition de votre stratégie digitale globale. Audit, conseil 
+                    et feuille de route personnalisée pour maximiser votre ROI 
+                    et atteindre vos objectifs.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <h3 class="service-title">Transformation Digitale</h3>
+                <p class="service-description">
+                    Accompagnement complet dans votre transformation digitale. 
+                    Formation des équipes, optimisation des processus et 
+                    conduite du changement.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <h3 class="service-title">Analyse & Optimisation</h3>
+                <p class="service-description">
+                    Mise en place d'outils d'analyse et de suivi de performance. 
+                    Optimisation continue basée sur les données pour améliorer 
+                    vos résultats.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="section">
+        <div class="section-header">
+            <h2 class="section-title fade-in">Projets récents</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle fade-in">
+                Découvrez quelques réalisations qui illustrent mon expertise.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project fade-in">
+                <div class="project-image">
+                    <img src="img/POg IMM.jpg" alt="Site vitrine Pog Immo">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Site vitrine Pog Immo</h3>
+                    <p class="project-description">
+                        Développement d'une plateforme de location et vente
+                        de biens immobiliers pour le compte de l'Agence Pog Immo.
+                        Gestion de projet de A à Z avec équipe de 8 personnes. 
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">CMS</span>
+                        <span class="tag">UX/UI design</span>
+                        <span class="tag">Agile</span>
+                        <span class="tag">Gestion de projet</span>
+                    </div>
+                    <a href="#" class="project-link">Voir le détail →</a>
+                </div>
+            </div>
+
+            <div class="project fade-in">
+                <div class="project-image">
+                    <img src="img/Site Mairie.jpg" alt="Site web Mairie 2ème Arrondissement Port-Gentil">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Site web de la Mairie du 2ᵉ Arrondissement de Port-Gentil</h3>
+                    <p class="project-description">
+                        Accompagnement complet d'une administration dans sa transformation digitale. 
+                        Gestion de projet de A à Z avec équipe de 8 personnes.
+                        Mise en place d'outils collaboratifs
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Gestion de projet digital</span>
+                        <span class="tag">Coordination d'équipe</span>
+                        <span class="tag">Communication institutionnelle</span>
+                        <span class="tag">Productivité</span>
+                    </div>
+                    <a href="https://site-mairie2arr-pog.vercel.app/" class="project-link">Voir le détail →</a>
+                </div>
+            </div>
+
+            <div class="project fade-in">
+                <div class="project-image">
+                    <img src="img/Ceremonie femme.jpg" alt="Communication digitale">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Communication digitale</h3>
+                    <p class="project-description">
+                        Mise en place d'une ligne éditoriale claire.
+                         Les objectifs : renforcer la visibilité de l'institution,
+                         d'améliorer l'engagement citoyen et de diffuser efficacement 
+                         les informations municipales. 
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Stratégie éditoriale</span>
+                        <span class="tag">Création de contenu (visuels & textes)</span>
+                    </div>
+                    <a href="https://www.facebook.com/Mairie2eArrondissementPortGentil" class="project-link">Voir le détail →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <h2>Travaillons ensemble</h2>
+        <p>Vous avez un projet digital ? Discutons de la façon dont je peux vous aider.</p>
+        <a href="https://calendly.com/princemouanga82/30min?month=2025-08" class="btn btn-primary">
+            Réserver un call
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">PM</div>
+                <p class="footer-description">
+                    Chef de Projet Digital passionné par l'innovation et la transformation numérique. 
+                    J'accompagne les entreprises dans leur croissance digitale avec expertise et créativité.
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/prince-mouanga/" class="social-icon" title="LinkedIn">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="https://www.facebook.com/princemouangaseo/" class="social-icon" title="Facebook">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://github.com/Mouaungaprincegit24" class="social-icon" title="GitHub">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+                    </a>
+                    <a href="https://wa.me/+24165735052" class="social-icon" title="WhatsApp">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/whatsapp.svg" alt="WhatsApp">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Gestion de Projet</a></li>
+                    <li><a href="#services">Stratégie Digitale</a></li>
+                    <li><a href="#services">Transformation Numérique</a></li>
+                    <li><a href="#services">Conseil & Audit</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul class="footer-links">
+                    <li><a href="#projets">Portfolio</a></li>
+                    <li><a href="img/Final CV-M.MOUANGA  Prince.pptx.png" onclick="downloadCV()">Télécharger CV</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#services">Outils & Technologies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:princemouanga82@gmail.com">Email</a></li>
+                    <li><a href="tel:+24165735052">Téléphone</a></li>
+                    <li><a href="#contact">Formulaire</a></li>
+                    <li><a href="https://wa.me/+24165735052">WhatsApp</a></li>
+                    <li> Port-Gentil, Gabon</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Prince Mouanga. Tous droits réservés. | Chef de Projet Digital & Stratège Numérique</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fade in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stats counter animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            const values = [5, 2, 85];
+            const suffixes = ['+', '+', '%'];
+            
+            stats.forEach((stat, index) => {
+                let current = 0;
+                const target = values[index];
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + suffixes[index];
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + suffixes[index];
+                    }
+                }, 30);
+            });
+        }
+
+        // Trigger stats animation
+        const statsSection = document.querySelector('.stats');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+        
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Download CV function
+        function downloadCV() {
+            // Simuler le téléchargement du CV
+            const link = document.createElement('a');
+            link.href = '#'; // Remplacer par le lien réel du CV
+            link.download = 'Prince_Mouanga_CV.pdf';
+            
+            // Afficher un message temporaire
+            alert('Fonctionnalité de téléchargement à configurer avec votre CV réel.');
+            
+            // Pour un vrai téléchargement, décommentez ces lignes :
+            // document.body.appendChild(link);
+            // link.click();
+            // document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
